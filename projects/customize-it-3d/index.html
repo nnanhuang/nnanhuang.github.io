@@ -39,6 +39,11 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <style>
+    .video-container {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
 
@@ -326,7 +331,10 @@
         <h2 class="title is-3">Comparision</h2>
         <div class="content has-text-justified">
           <p>
-            <span class="dnerf">Customize-It-3D</span> generates high-quality 3D objects from a single unposed image.
+            <span class="dnerf">Customize-It-3D</span> 
+            can reasonably hallucinate the texture details and geometry for novel views that even 
+            deviate significantly from the reference image, 
+            which greatly improves the fidelity and consistency in creating 3D models.
           </p>
         </div>
         <div class="content has-text-centered">
@@ -339,6 +347,9 @@
             <source src="./static/videos/comparision_1.mp4"
                     type="video/mp4">
           </video>
+
+          <div class="video-container"></div>
+
           <video id="compare-video2"
                  controls
                  muted
@@ -348,6 +359,9 @@
             <source src="./static/videos/comparision_2.mp4"
                     type="video/mp4">
           </video>
+
+          <div class="video-container"></div>
+          
           <video id="compare-video3"
                  controls
                  muted
@@ -357,6 +371,9 @@
             <source src="./static/videos/comparision_3.mp4"
                     type="video/mp4">
           </video>
+
+          <div class="video-container"></div>
+          
           <video id="compare-video4"
                  controls
                  muted
