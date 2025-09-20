@@ -1,0 +1,631 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Nan Huang</title>
+  
+  <meta name="author" content="Nan Huang">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" href="images/icon.png" type="image/svg+xml">
+</head>
+
+<style>
+  /* A simple utility class to hide one container. */
+  .hidden {
+    display: none;
+  }
+</style>
+
+  <script>
+    function showPubs(id) {
+      // id=0 => "Selected"; id=1 => "All"
+
+      if (id == 0) {
+        document.getElementById('pubs_selected').classList.remove('hidden');
+        document.getElementById('pubs_by_date').classList.add('hidden');
+        document.getElementById('select0').style = 'text-decoration:underline;';
+        document.getElementById('select1').style = '';
+      } else {
+        document.getElementById('pubs_selected').classList.add('hidden');
+        document.getElementById('pubs_by_date').classList.remove('hidden');
+        document.getElementById('select1').style = 'text-decoration:underline;';
+        document.getElementById('select0').style = '';
+      }
+
+      // Save user’s choice
+      sessionStorage.setItem('activeTab', id);
+    }
+
+    // On page load, restore the previously active tab (or default to 0)
+    window.addEventListener('DOMContentLoaded', function() {
+      let activeTab = sessionStorage.getItem('activeTab');
+      if (activeTab === null) {
+        activeTab = 1; // default
+      }
+      showPubs(activeTab);
+    });
+  </script>
+
+<style>
+/* The container that holds both the image and the overlaid video */
+.preview-container {
+  position: relative;
+  display: inline-block;  /* ensures container size follows the image's size */
+}
+
+/* The overlay that fades in/out on hover */
+.preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Hidden by default, fades in on hover via JS */
+  opacity: 0;  
+  transition: opacity 0.3s ease;  
+  overflow: hidden;  /* hides any video overshoot if aspect ratios differ */
+}
+
+/* Make the video fill the container while preserving aspect ratio */
+.preview-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* or 'contain' for letterboxing */
+}
+.tooltip {
+  position: relative;
+  cursor: help; /* optional: changes the cursor icon */
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  max-width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 5px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* position it above the text */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+</style>
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr style="padding:0px">
+                <td style="padding:2.5%;width:63%;vertical-align:middle">
+                  <p style="text-align:center">
+                    <name>
+                      <span class="tooltip">
+                        Nan </span> Huang
+                    </name>
+
+                  </p>
+                  <p>
+                    Hi👋! I am Nan Huang, a first-year Computer Science PhD student at <a href="https://illinois.edu/"> University of Illinois Urbana-Champaign (UIUC)</a>
+                    advised by <a href="https://rehg.org/">Prof. James Rehg</a>. I have been selected to receive an Amazon AI PhD Fellowship in 2025.
+                  <!-- </p>
+                  <p> -->
+                    <!-- In my grad study, I also work closely with <a href="https://qianqianwang68.github.io/"> Prof. Qianqian Wang</a> -->
+                    <!-- in <a href="https://www.harvard.edu/">Harvard University</a>. -->
+                  </p>
+                  <p>
+                    Previously, I received my B.Eng in software engineering from the <a href="https://english.pku.edu.cn/">Peking University</a> in 2024, working with <a href="https://www.shanghangzhang.com/">Prof. Shanghang Zhang</a>, and B.Econ in Finance from the <a href="https://english.uibe.edu.cn/">Univ. of Int. Business and Economics</a> in 2022.
+                    I have also spent a wonderful time with <a href="https://people.eecs.berkeley.edu/~kanazawa/">Prof. Angjoo Kanazawa</a> and <a href="https://people.eecs.berkeley.edu/~keutzer/">Prof. Kurt Keutzer</a> at <a href="https://www.berkeley.edu/">UC Berkeley</a> fortunately,
+                    working with <a href="https://qianqianwang68.github.io/"> Dr. Qianqian Wang</a> and <a href="https://wzzheng.net/"> Dr. Wenzhao Zheng</a>.
+                  </p>
+                  <p>
+                    I'm open to collaboration and discussion. Feel free to reach out!
+
+                  <p style="text-align:center">
+                    <a href="mailto:nanh3@illinois.edu">Email</a> &nbsp;/&nbsp;
+                    <a href="https://scholar.google.com/citations?user=8YvAspMAAAAJ&hl=zh-CN">Google Scholar</a> &nbsp;/&nbsp;
+                    <a href="https://github.com/nnanhuang/">Github</a>
+                    </p>
+                </td>
+                <td style="padding:2.5%;width:25%;max-width:25%">
+                  <a href="images/demo3.jpg">
+                    <img style="width:70%;max-width:70%" alt="profile photo" src="images/demo3.jpg" class="hoverZoomLink">
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <!-- <tr>
+            <td style="padding:16px;width:100%;vertical-align:middle">
+              <heading>
+                Research 
+              </heading>
+              <p>
+                I'm interested in computer vision, deep learning and generative AI,
+                with the goal of advancing spatial intelligence. I am passionate
+                about developing algorithms that enable model to autonomously perceive, understand, and interact with their physical
+                environments.
+              </p>
+            </td>
+          </tr> -->
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+          <td style="padding:16px;width:100%;vertical-align:middle">
+            <heading>
+              News 
+            </heading>
+            <p>
+              <b>09.2025</b>&nbsp&nbsp I receive the Amazon AI PHD Fellowship, thanks Amazon!<br>
+              <b>08.2025</b>&nbsp&nbsp I'm pursuing my Ph.D. in UIUC, nice to meet you all!<br>
+              <b>07.2025</b>&nbsp&nbsp One paper is accepted by ICCV '25!<br>
+              <b>02.2025</b>&nbsp&nbsp One paper is accepted by CVPR '25!<br>
+            </p>
+          </td>
+        </tr>
+      </tbody></table>
+
+          <!-- Publications heading with two buttons -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <heading>
+                    Publications 
+                  </heading>
+                  &nbsp;(<a href="javascript:showPubs(0)" id="select0">show selected</a> / 
+                  <a href="javascript:showPubs(1)" id="select1">show all</a>)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- This is where publications will be dynamically inserted -->
+          <div id="pubs"></div>
+
+          <!-- Hidden container: first two publications only (show selected) -->
+          <div id="pubs_selected" class="hidden">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr onmouseout="segmo_stop()" onmouseover="segmo_start()"  bgcolor="#ffffd0">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='segmo_image'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/segmo.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/segmo.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function segmo_start() {
+                        console.log('start');
+                        document.getElementById('segmo_image').style.opacity = "1";
+                      }
+            
+                      function segmo_stop() {
+                        console.log('stop');
+                        document.getElementById('segmo_image').style.opacity = "0";
+                      }
+                      segmo_stop()
+                    </script>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://motion-seg.github.io/">
+                      <span class="papertitle">Segment Any Motion in Videos</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://wzzheng.net/">Wenzhao Zheng</a>,
+                    <a href="https://www.chenfengx.com/">Chengfeng Xu</a>,
+                    <a href="https://people.eecs.berkeley.edu/~keutzer/">Kurt Keutzer</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>,
+                    <a href="https://people.eecs.berkeley.edu/~kanazawa/">Angjoo Kanazawa</a>,
+                    <a href="https://qianqianwang68.github.io/">Qianqian Wang</a>
+                    <br>
+                    <em>CVPR</em>, 2025
+                    <br>
+                    <a href="https://motion-seg.github.io/">project page</a>
+                    /
+                    <a href="https://arxiv.org/abs/2503.22268">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/SegAnyMo">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=SegAnyMo&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                      Learning which points are moving from the point tracks and
+                      using the moving point tracks to prompt SAM2 to get the final segmentation masks.
+                    </p>
+                  </td>
+                </tr>
+                
+                <tr onmouseout="cus3d_stop()" onmouseover="cus3d_start()">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='cus3d_image'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/cus3d.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/cus3d.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function cus3d_start() {
+                        console.log('start');
+                        document.getElementById('cus3d_image').style.opacity = "1";
+                      }
+            
+                      function cus3d_stop() {
+                        console.log('stop');
+                        document.getElementById('cus3d_image').style.opacity = "0";
+                      }
+                      cus3d_stop()
+                    </script>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://nnanhuang.github.io/projects/customize-it-3d/">
+                      <span class="papertitle">High-Quality 3D Creation from A Single Image Using Subject-Specific Knowledge Prior</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://www.microsoft.com/en-us/research/people/tinzhan/">Ting Zhang</a>,
+                    <a href="https://www.microsoft.com/en-us/research/people/yuyua/">Yuhui Yuan</a>,
+                    <a href="https://www.microsoft.com/en-us/research/people/doch/">Dong Chen</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>
+                    <br>
+                    <em>ICRA</em>, 2025
+                    <br>
+                    <a href="https://nnanhuang.github.io/projects/customize-it-3d/">project page</a>
+                    /
+                    <a href="http://arxiv.org/abs/2312.11535">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/Customize-it-3D">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=Customize-it-3D&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                      Leveraging multi-modal images to customize the diffusion prior, thereby incorporating subject-specific knowledge into the generation process.
+                    </p>
+                  </td>
+                </tr>
+
+                <tr onmouseout="s3g_stop()" onmouseover="s3g_start()">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='s3g_image'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/s3g.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/s3g.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function s3g_start() {
+                        console.log('start');
+                        document.getElementById('s3g_image').style.opacity = "1";
+                      }
+            
+                      function s3g_stop() {
+                        console.log('stop');
+                        document.getElementById('s3g_image').style.opacity = "0";
+                      }
+                      s3g_stop()
+                    </script>
+                  </td>
+            
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wzzheng.net/S3Gaussian/">
+                      <span class="papertitle">S<sup>3</sup>Gaussian: Self-Supervised Street Gaussians for Autonomous Driving</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://ucwxb.github.io/">Xiaobao Wei</a>,
+                    <a href="https://wzzheng.net/">Wenzhao Zheng</a>,
+                    <a href="https://wzzheng.net/S3Gaussian/">Pengju An</a>,
+                    <a href="https://lu-m13.github.io/">Ming Lu</a>,
+                    <a href="https://zhanwei.site/">Wei Zhan</a>,
+                    <a href="https://me.berkeley.edu/people/masayoshi-tomizuka/">Masayoshi Tomizuka</a>,
+                    <a href="https://people.eecs.berkeley.edu/~keutzer/">Kurt Keutzer</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>
+                    <br>
+                    <em>arXiv</em>, 2024
+                    <br>
+                    <a href="https://wzzheng.net/S3Gaussian/">project page</a>
+                    /
+                    <a href="https://arxiv.org/abs/2405.20323">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/S3Gaussian/">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=S3Gaussian&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                    Employs 3D Gaussians to model dynamic scenes for autonomous driving without other supervisions (e.g., 3D bounding boxes).
+                    </p>
+                  </td>
+                </tr>
+                                    
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Hidden container: all publications (show all by date) -->
+          <div id="pubs_by_date" class="hidden">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr onmouseout="segmo_stop_all()" onmouseover="segmo_start_all()"  bgcolor="#ffffd0">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='segmo_image_all'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/segmo.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/segmo.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function segmo_start_all() {
+                        console.log('start');
+                        document.getElementById('segmo_image_all').style.opacity = "1";
+                      }
+            
+                      function segmo_stop_all() {
+                        console.log('stop');
+                        document.getElementById('segmo_image_all').style.opacity = "0";
+                      }
+                      segmo_stop_all()
+                    </script>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://motion-seg.github.io/">
+                      <span class="papertitle">Segment Any Motion in Videos</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://wzzheng.net/">Wenzhao Zheng</a>,
+                    <a href="https://www.chenfengx.com/">Chengfeng Xu</a>,
+                    <a href="https://people.eecs.berkeley.edu/~keutzer/">Kurt Keutzer</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>,
+                    <a href="https://people.eecs.berkeley.edu/~kanazawa/">Angjoo Kanazawa</a>,
+                    <a href="https://qianqianwang68.github.io/">Qianqian Wang</a>
+                    <br>
+                    <em>CVPR</em>, 2025
+                    <br>
+                    <a href="https://motion-seg.github.io/">project page</a>
+                    /
+                    <a href="https://arxiv.org/abs/2503.22268">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/SegAnyMo">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=SegAnyMo&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                      Learning which points are moving from the point tracks and
+                      using the moving point tracks to prompt SAM2 to get the final segmentation masks.
+                    </p>
+                  </td>
+                </tr>
+            
+                <tr onmouseout="emd_stop_all()" onmouseover="emd_start_all()">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='emd_image'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/emd.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/emd.png' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function emd_start_all() {
+                        console.log('start');
+                        document.getElementById('emd_image').style.opacity = "1";
+                      }
+            
+                      function emd_stop_all() {
+                        console.log('stop');
+                        document.getElementById('emd_image').style.opacity = "0";
+                      }
+                      emd_stop_all()
+                    </script>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://qingpowuwu.github.io/emdgaussian.github.io/">
+                      <span class="papertitle">EMD: Explicit Motion Modeling for High-Quality Street Gaussian Splatting</span>
+                    </a>
+                    <br>
+                    <a href="https://ucwxb.github.io/">Xiaobao Wei</a>,
+                    <a href="https://github.com/qingpowuwu">Qingpo Wuwu</a>,
+                    <a href="https://qingpowuwu.github.io/emdgaussian.github.io/">Zhongyu Zhao</a>,
+                    <a href="https://qingpowuwu.github.io/emdgaussian.github.io/">Zhuangzhe Wu</a>,
+                    <strong>Nan Huang</strong>,
+                    <a href="https://lu-m13.github.io/">Ming Lu</a>,
+                    <a href="https://scholar.google.ca/citations?user=vOAzYlcAAAAJ&hl=en">Ningning Ma</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>
+                    <br>
+                    <em>ICCV</em>, 2025
+                    <br>
+                    <a href="https://qingpowuwu.github.io/emdgaussian.github.io/">project page</a>
+                    /
+                    <a href="https://arxiv.org/pdf/2411.15582">arXiv</a>
+                    <!-- / code (coming soon) -->
+                    <!-- <a href="https://github.com/nnanhuang/SegAnyMo">code</a> -->
+                    <!-- <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=SegAnyMo&type=star&count=true" >
+                    </iframe> -->
+                    <p></p>
+                    <p>
+                      A plug-and-play approach which models the motions of dynamic objects by introducing learnable motion embeddings to the Gaussians.        </p>
+                  </td>
+                </tr>
+            
+            
+                <tr onmouseout="cus3d_stop_all()" onmouseover="cus3d_start_all()">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='cus3d_image_all'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/cus3d.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/cus3d.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function cus3d_start_all() {
+                        console.log('start');
+                        document.getElementById('cus3d_image_all').style.opacity = "1";
+                      }
+            
+                      function cus3d_stop_all() {
+                        console.log('stop');
+                        document.getElementById('cus3d_image_all').style.opacity = "0";
+                      }
+                      cus3d_stop_all()
+                    </script>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://nnanhuang.github.io/projects/customize-it-3d/">
+                      <span class="papertitle">High-Quality 3D Creation from A Single Image Using Subject-Specific Knowledge Prior</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://www.microsoft.com/en-us/research/people/tinzhan/">Ting Zhang</a>,
+                    <a href="https://www.microsoft.com/en-us/research/people/yuyua/">Yuhui Yuan</a>,
+                    <a href="https://www.microsoft.com/en-us/research/people/doch/">Dong Chen</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>
+                    <br>
+                    <em>ICRA</em>, 2025
+                    <br>
+                    <a href="https://nnanhuang.github.io/projects/customize-it-3d/">project page</a>
+                    /
+                    <a href="http://arxiv.org/abs/2312.11535">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/Customize-it-3D">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=Customize-it-3D&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                      Leveraging multi-modal images to customize the diffusion prior, thereby incorporating subject-specific knowledge into the generation process.
+                    </p>
+                  </td>
+                </tr>
+                
+                <tr onmouseout="s3g_stop_all()" onmouseover="s3g_start_all()">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='s3g_image_all'><video  width=100% height=100% muted autoplay loop>
+                      <source src="images/s3g.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+            
+                      </video></div>
+                      <img src='images/s3g.jpg' width="160">
+                    </div>
+                    <script type="text/javascript">
+                      function s3g_start_all() {
+                        console.log('start');
+                        document.getElementById('s3g_image_all').style.opacity = "1";
+                      }
+            
+                      function s3g_stop_all() {
+                        console.log('stop');
+                        document.getElementById('s3g_image_all').style.opacity = "0";
+                      }
+                      s3g_stop_all()
+                    </script>
+                  </td>
+            
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wzzheng.net/S3Gaussian/">
+                      <span class="papertitle">S<sup>3</sup>Gaussian: Self-Supervised Street Gaussians for Autonomous Driving</span>
+                    </a>
+                    <br>
+                    <strong>Nan Huang</strong>,
+                    <a href="https://ucwxb.github.io/">Xiaobao Wei</a>,
+                    <a href="https://wzzheng.net/">Wenzhao Zheng</a>,
+                    <a href="https://wzzheng.net/S3Gaussian/">Pengju An</a>,
+                    <a href="https://lu-m13.github.io/">Ming Lu</a>,
+                    <a href="https://zhanwei.site/">Wei Zhan</a>,
+                    <a href="https://me.berkeley.edu/people/masayoshi-tomizuka/">Masayoshi Tomizuka</a>,
+                    <a href="https://people.eecs.berkeley.edu/~keutzer/">Kurt Keutzer</a>,
+                    <a href="https://www.shanghangzhang.com/">Shanghang Zhang</a>
+                    <br>
+                    <em>arXiv</em>, 2024
+                    <br>
+                    <a href="https://wzzheng.net/S3Gaussian/">project page</a>
+                    /
+                    <a href="https://arxiv.org/abs/2405.20323">arXiv</a>
+                    /
+                    <a href="https://github.com/nnanhuang/S3Gaussian/">code</a>
+                    <iframe
+                    style="margin-left: 2px; margin-bottom:-5px;"
+                    frameborder="0" scrolling="0" width="91px" height="20px"
+                    src="https://ghbtns.com/github-btn.html?user=nnanhuang&repo=S3Gaussian&type=star&count=true" >
+                    </iframe>
+                    <p></p>
+                    <p>
+                    Employs 3D Gaussians to model dynamic scenes for autonomous driving without other supervisions (e.g., 3D bounding boxes).
+                    </p>
+                  </td>
+                </tr>
+            
+              </tbody>
+            </table>
+          </div>
+
+          <table style="width:100%;border:0px;border-spacing:0px;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:0px">
+                  <br>
+                  <p style="text-align:right;font-size:small;">
+                    Thank <a href="https://jonbarron.info/">Jon Barron</a> for sharing website's 
+                    <a href="https://github.com/jonbarron/website">source code</a>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
